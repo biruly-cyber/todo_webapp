@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route , Navigate} from "react-router-dom"
 import './App.css';
 import Home from "./pages/Home";
 import Header from "./components/Header";
@@ -9,17 +9,18 @@ import Toaster from "react-hot-toast"
 
 
 function App() {
-  return <Router>
+  return (<Router>
     <Header/>
     <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Navigate to="home" />} />
+        <Route path="home" element={<Home/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/login" element={<Signin/>} />
         <Route path="/register" element={<Signup/>} />
     </Routes>
-    <Toaster/>
+    {/* <Toaster/> */}
   </Router>
-  
+  )
 }
 
 export default App;

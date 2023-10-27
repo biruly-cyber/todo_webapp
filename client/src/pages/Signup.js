@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { server } from "../index";
-import toast from "react-hot-toast"
+import { Context, server } from "../index";
 
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigation  = useNavigate();
+
+  const {isAuthenticated, setIsAuthenticated} = useContext(Context);
+
   //submmit handler
   const submitHandle = async (e) => {
     e.preventDefault();
@@ -15,31 +19,40 @@ function Signup() {
     console.log(name, email, password);
 
     try {
-        const { data } = await axios.post(
-            `${server}/users/register `,
-            {
-              name,
-              email,
-              password,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
-      
-         // Handle the response
-  console.log('Request was successful:', data);
+      const { data } = await axios.post(
+        `${server}/users/register `,
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      // Handle the response
+      console.log("Request was successful:", data);
+      setIsAuthenticated(true);
+
+      //redirect to home page
+      if(isAuthenticated) return  navigation('/'); // Redirect to the home page
+
     } catch (error) {
-        if (error.response && error.response.status === 409) {
-            // Handle conflict-specific logic here
-            console.error('Conflict detected. Please resolve the conflict.');
-          } else {
-            // Handle other errors
-            console.error('An error occurred:', error.message);
-          }
+      setIsAuthenticated(false);
+      if (error.response && error.response.status === 409) {
+        // Handle conflict-specific logic here
+        console.error("Conflict detected. Please resolve the conflict.");
+
+      } else {
+        // Handle other errors
+        console.error("An error occurred:", error.message);
+      
+
+      }
     }
   };
 
