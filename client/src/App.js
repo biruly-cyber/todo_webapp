@@ -5,10 +5,28 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import Toaster from "react-hot-toast"
+import { useContext, useEffect } from "react";
+import axios from "axios";
+import { Context, server } from ".";
 
 
 function App() {
+ const {user, setUser, setIsAuthenticated, setLoading} = useContext(Context)
+  useEffect(()=>{
+    setLoading(true);
+    axios.get(`${server}/users/me`,{
+      withCredentials:true
+    }).then(res=>{
+      console.log(res.data.user)
+      setUser(res.data.user)
+      setIsAuthenticated(true)
+      setLoading(false)
+    }).catch((error)=>{
+      console.log(error)
+      setIsAuthenticated(!true)
+      setLoading(false)
+    })
+  },[])
   return (<Router>
     <Header/>
     <Routes>

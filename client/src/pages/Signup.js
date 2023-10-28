@@ -57,36 +57,47 @@ function Signup() {
   };
 
   return (
-    <div>
-      <section>
-        <form onSubmit={submitHandle}>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Name"
-            required
-          />
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Sign up </button>
-          <h4>Or</h4>
-          <Link to={"/login"}>Sign in</Link>
-        </form>
-      </section>
-    </div>
+    <div className="flex items-center justify-center h-screen">
+    <section className="bg-white rounded-lg p-6 shadow-md">
+      <form onSubmit={submitHandle} className="text-center">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Name"
+          required
+          className="w-full border p-2 rounded-md mb-3"
+        />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="Email"
+          required
+          className="w-full border p-2 rounded-md mb-3"
+        />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password"
+          required
+          className="w-full border p-2 rounded-md mb-3"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none mb-3"
+        >
+          Sign up
+        </button>
+        <h4>Or</h4>
+        <Link to={"/login"} className="text-blue-500 hover:underline">
+          Sign in
+        </Link>
+      </form>
+    </section>
+  </div>
+  
   );
 }
 

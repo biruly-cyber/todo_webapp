@@ -10,9 +10,11 @@ export const Context = createContext({ isAuthenticated: false }); // Fix the typ
 
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
 
   return (
-    <Context.Provider value={{ isAuthenticated, setIsAuthenticated }}> {/* Fix the typo here */}
+    <Context.Provider value={{ isAuthenticated, setIsAuthenticated, loading, setLoading, user, setUser}}> {/* Fix the typo here */}
       <App />
     </Context.Provider>
   );
