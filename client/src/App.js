@@ -8,6 +8,8 @@ import Signup from "./pages/Signup";
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import { Context, server } from ".";
+import Khata from "./pages/Khata";
+import Order from "./pages/Order";
 
 
 function App() {
@@ -30,8 +32,9 @@ function App() {
   return (<Router>
     <Header/>
     <Routes>
-        <Route path="/" element={<Navigate to="home" />} />
-        <Route path="home" element={<Home/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/khata" element={<Khata/>} />
+        <Route path="/order" element={<Order/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/login" element={<Signin/>} />
         <Route path="/register" element={<Signup/>} />

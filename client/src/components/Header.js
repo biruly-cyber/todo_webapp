@@ -47,10 +47,11 @@ function Header() {
   return (
     <nav className="flex items-center justify-between w-full bg-blue-500 p-4">
   <div>
-    <h2 className="text-2xl text-white font-semibold">Todo App</h2>
+    <h2 className="text-2xl text-white font-semibold">Khata App</h2>
   </div>
   <article>
     <Link to="/" className="text-white hover:underline mr-4">Home</Link>
+    <Link to="/khata" className="text-white hover:underline mr-4">Khata</Link>
     <Link to="/profile" className="text-white hover:underline mr-4">Profile</Link>
     {isAuthenticated ? (
       <button onClick={submitHandler} className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none">

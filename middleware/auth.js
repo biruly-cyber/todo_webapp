@@ -17,6 +17,7 @@ export const isAuthenticated =async(req, res, next)=>{
 
     //check user exist or not
   req.user = await User.findById(decode._id);
+  console.log(req.user)
 
   next()
 }
